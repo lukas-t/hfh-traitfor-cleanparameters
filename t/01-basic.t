@@ -5,19 +5,11 @@ use Data::Clone;
 
 use Test::More;
 
-{
-	package MyTestForm;
-	use HTML::FormHandler::Moose;
-	extends qw/HTML::FormHandler/;
-	with qw/HTML::FormHandlerX::TraitFor::CleanParameters/;
+use_ok "HTML::FormHandler";
 
-	has_field foo => ( type => "Text");
-
-	no HTML::FormHandler::Moose;
-	1;
-}
-
-my $form = new_ok "MyTestForm";
+my $form = HTML::FormHandler->new_with_traits(
+	traits => ["HTML::FormHandlerX::TraitFor::CleanParameters"], 
+	field_list =>[foo => { type => "Text"}]);
 
 my $params = { bar => "data" };
 my $orig_params = clone($params);
@@ -25,6 +17,7 @@ my $orig_params = clone($params);
 $form->process(params => $params);
 
 ok ! $form->has_input, "form has no input";
+ok ! $form->ran_validation, "form was not validated";
 
 is_deeply $orig_params, $params, "original parameters remain unchanged";
 
@@ -36,6 +29,7 @@ $orig_params = clone($params);
 $form->process(params => $params);
 
 ok $form->has_input, "form has input";
+ok $form->ran_validation, "form was validated";
 
 is_deeply $orig_params, $params, "original parameters remain unchanged";
 

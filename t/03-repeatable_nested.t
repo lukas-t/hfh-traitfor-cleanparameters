@@ -115,13 +115,60 @@ my $params = {
                     first_name => 'John',
                     last_name  => 'Doe',
                     email      => 'jdoe@gmail.com',
-                }
+                },
+                {
+                    id => 2,
+                    first_name => 'Jim',
+                    last_name  => 'Doe',
+                    email      => 'jimd@gmail.com',
+                },
+            ]
+        },
+        {
+            id => 3,
+            address => '101 Main St',
+            city => 'Smallville',
+            state => 'CA',
+            employees => [
+                {
+                    id => 4,
+                    first_name => 'Jim',
+                    last_name  => 'Doe',
+                    email      => 'jimd@gmail.com',
+                },
+            ]
+        },
+        {
+            id => 2,
+            address => '101 Main St',
+            city => 'Smallville',
+            state => 'CA',
+            employees => [
+                {
+                    id => 1,
+                    first_name => 'John',
+                    last_name  => 'Doe',
+                    email      => 'jdoe@gmail.com',
+                },
+                {
+                    id => 2,
+                    first_name => 'Jim',
+                    last_name  => 'Doe',
+                    email      => 'jimd@gmail.com',
+                },
+                {
+                    id => 3,
+                    first_name => 'Jim',
+                    last_name  => 'Doe',
+                    email      => 'jimd@gmail.com',
+                },
             ]
         },
     ]
 };
 $form->process( params => $params );
 ok( $form, 'form built' );
+ok( $form->validated, "form validated");
 my $fif = $form->fif;
 my $value = $form->value;
 my $expected = {
@@ -133,11 +180,50 @@ my $expected = {
    'offices.0.employees.0.id' => 1,
    'offices.0.employees.0.last_name' => 'Doe',
    'offices.0.employees.0.password' => '',
+   'offices.0.employees.1.email' => 'jimd@gmail.com',
+   'offices.0.employees.1.first_name' => 'Jim',
+   'offices.0.employees.1.id' => 2,
+   'offices.0.employees.1.last_name' => 'Doe',
+   'offices.0.employees.1.password' => '',
    'offices.0.fax' => '',
    'offices.0.id' => 1,
    'offices.0.phone' => '',
    'offices.0.state' => 'CA',
    'offices.0.zip' => '',
+   'offices.1.address' => '101 Main St',
+   'offices.1.city' => 'Smallville',
+   'offices.1.employees.0.email' => 'jimd@gmail.com',
+   'offices.1.employees.0.first_name' => 'Jim',
+   'offices.1.employees.0.id' => 4,
+   'offices.1.employees.0.last_name' => 'Doe',
+   'offices.1.employees.0.password' => '',
+   'offices.1.fax' => '',
+   'offices.1.id' => 3,
+   'offices.1.phone' => '',
+   'offices.1.state' => 'CA',
+   'offices.1.zip' => '',
+   'offices.2.address' => '101 Main St',
+   'offices.2.city' => 'Smallville',
+   'offices.2.employees.0.email' => 'jdoe@gmail.com',
+   'offices.2.employees.0.first_name' => 'John',
+   'offices.2.employees.0.id' => 1,
+   'offices.2.employees.0.last_name' => 'Doe',
+   'offices.2.employees.0.password' => '',
+   'offices.2.employees.1.email' => 'jimd@gmail.com',
+   'offices.2.employees.1.first_name' => 'Jim',
+   'offices.2.employees.1.id' => 2,
+   'offices.2.employees.1.last_name' => 'Doe',
+   'offices.2.employees.1.password' => '',
+   'offices.2.employees.2.email' => 'jimd@gmail.com',
+   'offices.2.employees.2.first_name' => 'Jim',
+   'offices.2.employees.2.id' => 3,
+   'offices.2.employees.2.last_name' => 'Doe',
+   'offices.2.employees.2.password' => '',
+   'offices.2.fax' => '',
+   'offices.2.id' => 2,
+   'offices.2.phone' => '',
+   'offices.2.state' => 'CA',
+   'offices.2.zip' => '',
    'tier' => 1,
    'type' => 'simple',
    'username' => 'a_user',

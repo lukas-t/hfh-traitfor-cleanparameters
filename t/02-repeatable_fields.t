@@ -31,6 +31,9 @@ is_deeply $orig_params, $params, "original parameters remain unchanged";
 
 $params = { 
 	"foo.0.data" => "data",
+	"foo.2.data" => "data",
+	"foo.3.data" => "data",
+	"foo.1.data" => "data",
 	"bar" => "data",
 };
 
@@ -41,6 +44,10 @@ $form->process(params => $params);
 ok $form->has_input, "form has input";
 
 is_deeply $orig_params, $params, "original parameters remain unchanged";
+
+delete $orig_params->{bar};
+
+is_deeply $form->fif, $orig_params, "fif matches parameters";
 
 done_testing;
 

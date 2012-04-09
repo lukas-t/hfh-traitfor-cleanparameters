@@ -5,18 +5,11 @@ use Data::Clone;
 
 use Test::More;
 
-{
-	package MyTestForm;
-	use HTML::FormHandler::Moose;
-	extends qw/HTML::FormHandler/;
+use_ok "HTML::FormHandler";
 
-	has_field foo => ( type => "Text");
-
-	no HTML::FormHandler::Moose;
-	1;
-}
-
-my $form = new_ok "MyTestForm";
+my $form = new_ok "HTML::FormHandler" => [ field_list => 
+	[ foo => { type => "Text" }],
+];
 
 my $params = { bar => "data" };
 
