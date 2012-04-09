@@ -4,6 +4,11 @@ Makefile.PL
 MANIFEST			This list of files
 README
 t/00-load.t
+t/01-basic.t
+t/01-without_traitfor-cleanparams.t
+t/02-repeatable_fields.t
+t/03-repeatable_nested.t
+t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
