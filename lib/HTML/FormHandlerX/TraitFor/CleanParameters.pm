@@ -259,6 +259,7 @@ sub values_to_fif{
 			};
 		}
 		elsif(ref($data) && ref($data) eq "ARRAY"){
+			if(ref($data->[0])){
 			my $count = 0;
 			foreach (@$data){
 			if(ref($_) && ref($_) eq "HASH"){
@@ -272,13 +273,17 @@ sub values_to_fif{
 			}
 
 			}
+			}
+			else{
+				$output->{$paramname} = $data;
+				
+			}
 		}
 		else{
 			$output->{$paramname} = $data;
 			
 		}
 	}
-	use Data::Dumper;
 	return $output;
 }
 
